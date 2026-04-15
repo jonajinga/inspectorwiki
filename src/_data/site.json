@@ -1,0 +1,28 @@
+{
+  "name": "InspectorWiki",
+  "tagline": "The Free Encyclopedia for Property Inspectors",
+  "description": "InspectorWiki is a free, community-driven knowledge base covering every aspect of property inspection — from foundations to roofing, standards to business practices.",
+  "url": "https://inspectorwiki.com",
+  "language": "en",
+  "nav": [
+    { "label": "Home", "url": "/", "section": "home" },
+    { "label": "Wiki", "url": "/wiki/", "section": "wiki" },
+    { "label": "Blog", "url": "/blog/", "section": "blog" },
+    { "label": "Glossary", "url": "/glossary/", "section": "glossary" },
+    { "label": "Search", "url": "/search/", "section": "search" }
+  ],
+  "wikiTopics": [
+    "Structural Systems",
+    "Roofing",
+    "Plumbing",
+    "Electrical",
+    "HVAC",
+    "Exterior & Siding",
+    "Interior & Finishes",
+    "Insulation & Ventilation",
+    "Foundations & Basements",
+    "Fire & Safety",
+    "Standards of Practice",
+    "Business & Marketing"
+  ]
+}

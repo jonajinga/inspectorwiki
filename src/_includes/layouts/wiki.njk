@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+---
+<div class="section-block">
+  <div class="container wiki-layout">
+    <aside class="sidebar">
+      <span class="section-label">Wiki</span>
+      <nav aria-label="Wiki navigation">
+        <ul>
+          {%- for article in collections.wiki %}
+          <li>
+            <a href="{{ article.url }}" class="sidebar__link{% if article.url == page.url %} sidebar__link--active{% endif %}">{{ article.data.title }}</a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </aside>
+    <article class="prose">
+      <header>
+        <span class="section-label">{{ topic or "General" }}</span>
+        <h1>{{ title }}</h1>
+      </header>
+      {{ content | safe }}
+      <nav class="step-nav" aria-label="Article navigation">
+        {%- set wikiArticles = collections.wiki %}
+        {%- set currentIndex = 0 %}
+        {%- for article in wikiArticles %}
+          {%- if article.url == page.url %}
+            {%- set currentIndex = loop.index0 %}
+          {%- endif %}
+        {%- endfor %}
+        {%- if currentIndex > 0 %}
+        <a href="{{ wikiArticles[currentIndex - 1].url }}" class="step-nav__btn step-nav__btn--prev">&larr; {{ wikiArticles[currentIndex - 1].data.title }}</a>
+        {%- endif %}
+        {%- if currentIndex < wikiArticles.length - 1 %}
+        <a href="{{ wikiArticles[currentIndex + 1].url }}" class="step-nav__btn step-nav__btn--next">{{ wikiArticles[currentIndex + 1].data.title }} &rarr;</a>
+        {%- endif %}
+      </nav>
+    </article>
+  </div>
+</div>

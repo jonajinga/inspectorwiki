@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+title: Wiki
+description: Browse the InspectorWiki knowledge base — articles on every aspect of property inspection.
+---
+<section class="section-block">
+  <div class="container">
+    <span class="section-label">Knowledge Base</span>
+    <h1>Wiki</h1>
+    <p>Browse articles organized by inspection topic. Each article covers systems, defects, standards, and best practices.</p>
+
+    <div class="topic-table">
+      {%- for topic in site.wikiTopics %}
+      <div class="topic-table__cell">
+        <span class="topic-table__num">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+        <span class="topic-table__name">{{ topic }}</span>
+      </div>
+      {%- endfor %}
+    </div>
+
+    <h2>All Articles</h2>
+    <ul class="article-list">
+      {%- for article in collections.wiki %}
+      <li><a href="{{ article.url }}">{{ article.data.title }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>

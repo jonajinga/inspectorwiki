@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: Search
+description: Search the InspectorWiki knowledge base.
+permalink: /search/
+---
+<section class="section-block">
+  <div class="container">
+    <span class="section-label">Search</span>
+    <h1>Search InspectorWiki</h1>
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+    <div id="search"></div>
+    <script src="/pagefind/pagefind-ui.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        new PagefindUI({
+          element: "#search",
+          showSubResults: true,
+          showImages: false,
+        });
+      });
+    </script>
+  </div>
+</section>
