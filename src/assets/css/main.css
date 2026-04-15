@@ -54,6 +54,64 @@ button {
   --gap: 1.5rem;
 }
 
+/* ── Dark Mode ── */
+[data-theme="dark"] {
+  --ink: #e8e4dc;
+  --ink-2: #c5bfb5;
+  --ink-3: #8a8279;
+  --ink-4: #5a534a;
+  --paper: #1a1816;
+  --paper-2: #232019;
+  --paper-3: #2c2820;
+  --border: #3d3830;
+  --amber: #e0962a;
+  --amber-lt: #3a2e1a;
+  --navy: #6ba3d6;
+  --navy-lt: #1c2a38;
+  --green: #5cb88a;
+  --green-lt: #1a2e22;
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.3;
+}
+
+[data-theme="dark"] .site-logo__mark {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .prose pre {
+  background: #0f0e0d;
+}
+
+[data-theme="dark"] .contribute-cta {
+  background: #0f0e0d;
+}
+
+[data-theme="dark"] .site-footer {
+  background: #0f0e0d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8e4dc;
+    --ink-2: #c5bfb5;
+    --ink-3: #8a8279;
+    --ink-4: #5a534a;
+    --paper: #1a1816;
+    --paper-2: #232019;
+    --paper-3: #2c2820;
+    --border: #3d3830;
+    --amber: #e0962a;
+    --amber-lt: #3a2e1a;
+    --navy: #6ba3d6;
+    --navy-lt: #1c2a38;
+    --green: #5cb88a;
+    --green-lt: #1a2e22;
+  }
+}
+
 /* ── Base ── */
 html {
   scroll-behavior: smooth;
@@ -175,6 +233,21 @@ body::before {
 .primary-nav__link[aria-current="page"] {
   background: var(--ink);
   color: var(--paper);
+}
+
+.site-header__toggle {
+  color: var(--ink-3);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+}
+
+.site-header__toggle:hover {
+  color: var(--ink);
 }
 
 .site-header__search {
@@ -735,6 +808,30 @@ body::before {
   font-weight: 400;
 }
 
+.sidebar__link--top {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--ink-2);
+  padding: 0.375rem 0.625rem;
+  margin-bottom: 0.25rem;
+  transition: background 0.1s, color 0.1s;
+}
+
+.sidebar__link--top:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+.sidebar__link--top.sidebar__link--active {
+  background: var(--amber-lt);
+  color: var(--ink);
+}
+
 /* ── Step Nav ── */
 .step-nav {
   display: flex;
@@ -903,6 +1000,225 @@ body::before {
   pointer-events: auto;
 }
 
+/* ── Reading Progress Bar ── */
+.reading-progress {
+  position: fixed;
+  top: 58px;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--amber);
+  z-index: 99;
+  transition: width 0.1s linear;
+}
+
+/* ── Breadcrumbs ── */
+.breadcrumb {
+  margin-bottom: 1rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.688rem;
+  color: var(--ink-3);
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  color: var(--ink-4);
+}
+
+.breadcrumb a {
+  color: var(--ink-3);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--ink);
+}
+
+/* ── Article Meta ── */
+.article-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  margin-top: 0.25rem;
+}
+
+/* ── Article Tools ── */
+.article-tools {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.article-tools__btn {
+  font-family: var(--font-mono);
+  font-size: 0.688rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--ink-3);
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.article-tools__btn:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+/* ── Download Panel ── */
+.download-panel {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--paper-2);
+  border: 1px solid var(--border);
+}
+
+.download-panel__btn {
+  font-family: var(--font-mono);
+  font-size: 0.688rem;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.download-panel__btn:hover {
+  background: var(--amber-lt);
+}
+
+/* ── Table of Contents ── */
+.toc {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--paper-2);
+  border: 1px solid var(--border);
+}
+
+.toc-list {
+  list-style: none;
+}
+
+.toc-list__item {
+  margin-bottom: 0.25rem;
+}
+
+.toc-list__item--nested {
+  padding-left: 1rem;
+}
+
+.toc-list__link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  text-decoration: none;
+  display: block;
+  padding: 0.15rem 0;
+  transition: color 0.1s;
+}
+
+.toc-list__link:hover {
+  color: var(--ink);
+}
+
+.toc-list__link.is-active {
+  color: var(--amber);
+  font-weight: 500;
+}
+
+/* ── Related Articles ── */
+.related-articles {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.related-articles ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.related-articles li {
+  padding: 0.375rem 0;
+}
+
+.related-articles a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.related-articles a:hover {
+  color: var(--amber);
+}
+
+/* ── Backlinks ── */
+.backlinks {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.backlinks ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.backlinks li {
+  padding: 0.25rem 0;
+}
+
+.backlinks a {
+  color: var(--ink-2);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.backlinks a:hover {
+  color: var(--amber);
+}
+
+/* ── Glossary Tooltips ── */
+.glossary-tip {
+  border-bottom: 1px dotted var(--amber);
+  cursor: help;
+}
+
+.tippy-box[data-theme~='glossary'] {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.5;
+  border-radius: 2px;
+  padding: 0.25rem 0.125rem;
+}
+
+.tippy-box[data-theme~='glossary'] .tippy-arrow {
+  color: var(--ink);
+}
+
 /* ── Pagefind overrides ── */
 .pagefind-ui {
   --pagefind-ui-font: var(--font-body);
@@ -992,5 +1308,51 @@ body::before {
 
   .section-block {
     padding: 2.5rem 0;
+  }
+}
+
+/* ── Print ── */
+@media print {
+  body::before,
+  .site-header,
+  .site-footer,
+  .sidebar,
+  .back-to-top,
+  .reading-progress,
+  .article-tools,
+  .download-panel,
+  .step-nav,
+  .contribute-cta,
+  .toc {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    color: #000;
+    background: #fff;
+  }
+
+  .wiki-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .prose {
+    max-width: 100%;
+  }
+
+  .prose a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+
+  .prose a[href^="#"]::after,
+  .prose a[href^="/"]::after {
+    content: "";
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
   }
 }

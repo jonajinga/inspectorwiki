@@ -1,6 +1,7 @@
 const { DateTime } = require("luxon");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
 
 module.exports = function (eleventyConfig) {
   // Plugins
@@ -8,6 +9,12 @@ module.exports = function (eleventyConfig) {
 
   // Markdown
   const md = markdownIt({ html: true, linkify: true, typographer: true });
+  md.use(markdownItAnchor, {
+    permalink: false,
+    level: [2, 3],
+    slugify: (s) =>
+      s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+  });
   eleventyConfig.setLibrary("md", md);
 
   // --------------- Collections ---------------
@@ -72,6 +79,16 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("latest", (arr, n) => {
     if (!arr) return [];
     return arr.slice(0, n);
+  });
+
+  eleventyConfig.addFilter("backlinksTo", (collection, url) => {
+    if (!collection || !url) return [];
+    return collection.filter(
+      (item) =>
+        item.url !== url &&
+        item.templateContent &&
+        item.templateContent.includes('href="' + url + '"')
+    );
   });
 
   // --------------- Shortcodes ---------------

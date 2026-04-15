@@ -19,13 +19,18 @@
   <meta name="twitter:title" content="{{ title or site.name }}">
   <meta name="twitter:description" content="{{ description or site.description }}">
 
+  <!-- Theme (inline to prevent FOUC) -->
+  <script>
+  (function(){var k='iw-theme',r=document.documentElement;function s(){return window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}try{var t=localStorage.getItem(k);r.setAttribute('data-theme',t||s())}catch(e){r.setAttribute('data-theme',s())}})();
+  </script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@300;400&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v={{ build.timestamp }}">
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="/feed.xml">
@@ -36,6 +41,20 @@
     {{ content | safe }}
   </main>
   {% include "partials/footer.njk" %}
+  <script src="/assets/js/theme.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
+  {%- if section == "wiki" %}
+  <script src="/assets/js/download.js" defer></script>
+  <script>
+  window.__glossaryTerms = [
+    {%- for term in collections.glossary %}
+    { term: {{ term.data.title | dump | safe }}, def: {{ term.templateContent | stripHtml | truncate(200) | dump | safe }} }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ];
+  </script>
+  <script src="/assets/js/popper.min.js" defer></script>
+  <script src="/assets/js/tippy.min.js" defer></script>
+  <script src="/assets/js/glossary-tips.js" defer></script>
+  {%- endif %}
 </body>
 </html>

@@ -13,5 +13,8 @@
     "luxon": "^3.4.4",
     "markdown-it": "^14.0.0",
     "pagefind": "^1.1.0"
+  },
+  "dependencies": {
+    "markdown-it-anchor": "^9.2.0"
   }
 }
