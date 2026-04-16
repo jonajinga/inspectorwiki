@@ -48,7 +48,24 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        sitemap: {
+          changefreq: 'weekly' as const,
+          priority: 0.5,
+        },
       } satisfies Preset.Options,
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-ideal-image',
+      {
+        quality: 70,
+        max: 1200,
+        min: 640,
+        steps: 4,
+        disableInDev: false,
+      },
     ],
   ],
 
@@ -72,11 +89,9 @@ const config: Config = {
           label: 'Wiki',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/jonajinga/inspectorwiki',
-          label: 'GitHub',
-          position: 'right',
-        },
+        {to: '/about', label: 'About', position: 'left'},
+        {to: '/contact', label: 'Contact', position: 'left'},
+        {to: '/features', label: 'Features', position: 'left'},
       ],
     },
     footer: {
@@ -92,16 +107,29 @@ const config: Config = {
           ],
         },
         {
-          title: 'Community',
+          title: 'Resources',
           items: [
             {label: 'Blog', to: '/blog'},
-            {label: 'GitHub', href: 'https://github.com/jonajinga/inspectorwiki'},
-            {label: 'Contribute', to: '/wiki/intro'},
+            {label: 'Features', to: '/features'},
+            {label: 'Style Guide', to: '/style-guide'},
+            {label: 'Feedback', to: '/feedback'},
+          ],
+        },
+        {
+          title: 'About',
+          items: [
+            {label: 'About', to: '/about'},
+            {label: 'Contact', to: '/contact'},
+            {label: 'Accessibility', to: '/accessibility'},
+            {label: 'Privacy Policy', to: '/privacy'},
+            {label: 'Contributors', to: '/contributors'},
+            {label: 'Sitemap', to: '/sitemap'},
           ],
         },
         {
           title: 'More',
           items: [
+            {label: 'GitHub', href: 'https://github.com/jonajinga/inspectorwiki'},
             {label: 'RSS Feed', href: 'https://inspectorwiki.com/blog/rss.xml'},
           ],
         },
