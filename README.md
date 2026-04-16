@@ -1,6 +1,6 @@
 # InspectorWiki
 
-The free encyclopedia for property inspectors. Built with [Eleventy](https://www.11ty.dev/).
+The free encyclopedia for property inspectors. Built with [Docusaurus](https://docusaurus.io/).
 
 ## Development
 
@@ -15,8 +15,13 @@ npm start
 npm run build
 ```
 
-Outputs to `public/`. Pagefind search index is generated as a post-build step.
+Outputs to `build/`. Deploy to Cloudflare Pages.
 
-## CMS
+## Content
 
-Decap CMS is available at `/admin/`. Requires Netlify Identity for authentication.
+- **Wiki articles** — `docs/` directory, organized by inspection topic
+- **Blog posts** — `blog/` directory, dated markdown files
+
+## License
+
+Content: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
